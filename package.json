@@ -1,12 +1,23 @@
 {
   "name": "shop-gg",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run start --workspace=frontend",
+    "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
+    "test": "npm run test --workspaces"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["marketplace", "handmade", "artisan", "ecommerce"],
+  "author": "Shop-GG Team",
+  "license": "MIT",
+  "description": "An online marketplace for handmade and artisanal products"
 }
